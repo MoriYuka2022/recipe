@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <v-container>
+
     <input type="email" v-model="user.email"><br>
     <input type="password" v-model="user.password"><br>
     <button  @click="login" class="firebaseui-idp-button">
@@ -10,12 +11,13 @@
         初めてのご利用ですか？
       </li>
       <li>
-        <router-link to="/signup">
+        <router-link to="/recipeSignUp">
           アカウントを作成する
         </router-link>
       </li>
     </ul>
-  </div>
+    
+  </v-container>
 </template>
 
 <script>

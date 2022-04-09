@@ -12,7 +12,7 @@ export default new Vuex.Store({
       processes:[{}]
     },
     user: {
-      email: "test2@gmail.com",
+      email: "test3@gmail.com",
       password: "yuka1014"
 }
   },

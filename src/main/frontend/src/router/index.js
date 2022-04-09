@@ -3,9 +3,11 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RecipeLogin from '../views/login/RecipeLogin.vue'
 import RecipeLogout from '../views/login/RecipeLogout.vue'
+import RecipeSignUp from '../views/login/RecipeSignUp.vue'
 import RecipeList from '../views/recipe/RecipeList.vue'
 import RecipeCreate from '../views/recipe/RecipeCreate.vue'
 import CustomerList from '../views/customer/CustomerList.vue'
+import CustomerUpdate from '../views/customer/CustomerUpdate.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +28,11 @@ const routes = [
     component: RecipeLogout
   },
   {
+    path: '/recipeSignUp',
+    name: 'recipeSignUp',
+    component: RecipeSignUp
+  },
+  {
     path: '/recipeList',
     name: 'recipeList',
     component: RecipeList
@@ -39,6 +46,11 @@ const routes = [
     path: '/customerList',
     name: 'customerList',
     component: CustomerList
+  },
+  {
+    path: '/customerUpdate/:id',
+    name: 'customerUpdate',
+    component: CustomerUpdate
   }
 ]
 

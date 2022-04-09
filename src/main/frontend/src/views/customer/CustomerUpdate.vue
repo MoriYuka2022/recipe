@@ -1,5 +1,8 @@
 <template>
   <div>
+
+    <v-alert v-if="errorMsg" dense outlined type="error">{{ errorMsg }}</v-alert>
+
     <CustomerBase title="顧客編集画面"></CustomerBase>
 
     <button @click="update()" class="btn btn-primary">編集</button>
@@ -18,6 +21,7 @@ export default {
   // **************************************************************************
   data: function() {
     return {
+      errorMsg: "",
     }
   },
   
@@ -81,25 +85,11 @@ export default {
         console.log(JSON.stringify(this.customer))
         this.$router.push('/customer/list')
       })
+      .catch(error => {
+        console.log(JSON.stringify(error.response))
+        this.errorMsg = error.response.data.message
+      })
     },
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

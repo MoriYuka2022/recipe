@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,6 +25,9 @@ public class Customer {
 	private String name;
 	
 	private String role;
+	
+	@Version
+	private Long version;
 
 	@OneToMany(mappedBy = "customer")
 	@JsonIgnore
