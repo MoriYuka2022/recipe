@@ -1,19 +1,29 @@
 <template>
   <v-container>
 
-    <input type="email" v-model="user.email"><br>
-    <input type="password" v-model="user.password"><br>
-    <button  @click="login" class="firebaseui-idp-button">
-          <span class="firebaseui-idp-text firebaseui-idp-text-long">メールでログイン</span>
-    </button><br><br>
+    <h2>ユーザーログイン</h2><br>
+
+    <v-row>
+      <v-col cols="8" sm="6" md="3">
+        <v-text-field label="メールアドレス" v-model="user.email">
+        </v-text-field>
+      </v-col>
+    </v-row>
+
+    <v-row dense>
+      <v-col cols="8" sm="6" md="3">
+        <v-text-field label="パスワード" v-model="user.password">
+        </v-text-field>
+      </v-col>
+    </v-row>
+
+    <v-btn elevation="2" @click="login">メールでログイン</v-btn>
+    <br><br>
+
     <ul>
       <li>
         初めてのご利用ですか？
-      </li>
-      <li>
-        <router-link to="/recipeSignUp">
-          アカウントを作成する
-        </router-link>
+        <router-link to="/recipeSignUp">アカウントを作成する</router-link>
       </li>
     </ul>
     

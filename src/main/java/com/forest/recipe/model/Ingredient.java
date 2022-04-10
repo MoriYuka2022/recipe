@@ -26,12 +26,13 @@ public class Ingredient {
 	@JsonBackReference
 	private Recipe recipe;
 	
+	//材料名
 	private String name;
 	
-	private int numberOfPeople;
-	
+	//量
 	private int amount;
 	
+	//単位
 	private String unit;
 	
 }

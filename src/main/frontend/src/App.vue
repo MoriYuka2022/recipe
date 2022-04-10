@@ -48,6 +48,7 @@
         <v-spacer></v-spacer>
       
         <v-toolbar-items>
+          {{ user.name }}
           <v-menu offset-y>
             <template v-slot:activator="{on}">
               <v-btn v-on="on" text>Login<v-icon>mdi-menu-down</v-icon></v-btn>

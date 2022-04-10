@@ -3,12 +3,16 @@
 
     <v-row>
       <v-col cols="10">
-        <v-data-table :headers="headers" :items="customers">
+        <v-data-table :headers="headers" :items="recipe">
 
-          <template v-slot:[`item.recipe`]>レシピ</template>
+        <template v-slot:[`item.id`]="{item}">
+            <router-link :to="{name: 'recipeUpdate', params: {id: item.id}}">
+              {{ item.id }}
+            </router-link>
+          </template>
 
-          <template v-slot:[`item.delete`]>
-            <v-btn small color="error" @click="deleteCustomer(customer.id)" >
+          <template v-slot:[`item.delete`]="{item}">
+            <v-btn small color="error" @click="deleteRecipe(item.id)">
               delete
             </v-btn>
           </template>
@@ -24,7 +28,7 @@
 import axios from 'axios';
 
 export default {
-  name: 'CustomerTable',
+  name: 'RecipeTable',
 
   // **************************************************************************
   // * データ
@@ -37,11 +41,11 @@ export default {
             value: 'id' 
             },
             {
-            text: '名前',
+            text: 'レシピ名',
             value: 'name',
             },
-            { text: 'レシピ', 
-            value: 'recipe' 
+            { text: '作成者', 
+            value: 'customer.name' 
             },
             {
             text:'削除',
@@ -49,7 +53,7 @@ export default {
             sortable:false
             }
         ],
-        customers: [],
+        recipe: [],
     }
   },
   
@@ -57,7 +61,7 @@ export default {
   // * 初期処理
   // **************************************************************************
   mounted() {
-    this.searchCustomers()
+    this.searchRecipe()
   },
 
   // **************************************************************************
@@ -68,35 +72,33 @@ export default {
     // ========================================================================
     // 検索
     // ========================================================================
-    searchCustomers: function() {
+    searchRecipe: function() {
     
-      axios.get('http://localhost:8080/customers/')
+      axios.get('http://localhost:8080/recipes/')
         .then(response => {
-            this.customers = response.data
-            console.log(JSON.stringify(this.customers))
+            this.recipe = response.data
+            console.log(JSON.stringify(this.recipe))
         })
         .catch( e => {
           console.log(e)
-        })
-        .finally(()=>{
-          console.log("通信完了")
         })
     },
 
     // ========================================================================
     // 行削除
     // ========================================================================
-   deleteCustomer: function(id) {
-console.log(JSON.stringify(id))
-        confirm('削除しますか') 
+    deleteRecipe: function(id) {
     
-        axios.delete('http://localhost:8080/customers/' + id)
-            .then(response => {
-            console.log(response)
-            this.searchCustomers()
-        })
+      axios.delete('http://localhost:8080/recipes/' + id)
+      .then(response => {
+        console.log(response)
+        this.searchRecipe()
+      })
+
    },
 
   },
+  
+
 }
 </script>

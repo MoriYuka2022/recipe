@@ -4,41 +4,20 @@
     <h2>ユーザー新規登録</h2>
 
     <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="3"
-      >
-        <v-text-field
-          label="ユーザー名"
-          v-model="user.name"
-        ></v-text-field>
+      <v-col cols="12" sm="6" md="3">
+        <v-text-field label="ユーザー名" v-model="user.name" ></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="3"
-      >
-        <v-text-field
-          label="メールアドレス"
-          v-model="user.email"
-        ></v-text-field>
+      <v-col cols="12" sm="6" md="3" >
+        <v-text-field label="メールアドレス" v-model="user.email" ></v-text-field>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="3"
-      >
-        <v-text-field
-          label="パスワード"
-          v-model="user.password"
-        ></v-text-field>
+      <v-col cols="12" sm="6" md="3" >
+        <v-text-field label="パスワード" v-model="user.password"></v-text-field>
       </v-col>
     </v-row>
 

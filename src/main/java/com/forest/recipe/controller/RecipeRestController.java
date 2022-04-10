@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.forest.recipe.model.Recipe;
 import com.forest.recipe.repository.RecipeRepository;
+import com.forest.recipe.service.RecipeService;
 
 @RestController
 @RequestMapping("/recipes")
@@ -24,6 +25,9 @@ public class RecipeRestController {
 	
 	@Autowired
 	private RecipeRepository repository;
+	
+	@Autowired
+	private RecipeService service;
 	
 
 	/**
@@ -68,7 +72,7 @@ public class RecipeRestController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> update(@PathVariable("id") Long id, @Valid @RequestBody Recipe entity) {
-        entity = repository.save(entity);
+        entity = service.saveHistory(entity);
         return ResponseEntity.ok(entity);
     }
 	

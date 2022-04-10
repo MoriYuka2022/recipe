@@ -1,12 +1,18 @@
 <template>
   <v-container>
 
-    <RecipeBase title="レシピ登録画面"></RecipeBase>
+    <RecipeBase title="レシピ編集画面"></RecipeBase>
 
-    <v-row class="justify-center">
-      <v-btn @click="insert()">登録</v-btn>
+    <v-row  cols="20">
+      <v-col class="justify-left">
+      <v-btn router-link :to="'/recipeList'" class = "start">戻る</v-btn>
+      </v-col>
+
+      <v-col class="justify-center">
+        <v-btn color="primary" @click="update()">登録</v-btn>
+      </v-col>
     </v-row>
-
+  
   </v-container>
 </template>
 
@@ -15,7 +21,7 @@ import axios from 'axios'
 import RecipeBase from './RecipeBase'
 
 export default {
-  name: 'RecipeCreate',
+  name: 'RecipeUpdate',
   
   // **************************************************************************
   // * データ  
@@ -34,6 +40,7 @@ export default {
       ingredients: [{}],
       processes: [{}]
     }
+    this.searchRecipeByID()
   },
   
   // **************************************************************************
@@ -47,18 +54,32 @@ export default {
   // * メソッド
   // **************************************************************************
   methods: {
+      
+    // ========================================================================
+    // IDで検索
+    // ========================================================================
+    searchRecipeByID: function() {
+    
+      axios.get('http://localhost:8080/recipes/' + this.$route.params.id)
+        .then(response => {
+            this.recipe = response.data
+            console.log(JSON.stringify(this.recipe))
+        })
+        .catch( e => {
+          console.log(e)
+        })
+    },
   
     // ========================================================================
-    // 登録
+    // 更新
     // ========================================================================
-    insert: function() {
+    update: function() {
     
       this.recipe.customer = this.user
-      axios.post('http://localhost:8080/recipes/', this.recipe)
+      axios.put('http://localhost:8080/recipes/' + this.$route.params.id, this.recipe)
       .then(response => {
         this.recipe = response.data
         console.log(JSON.stringify(this.recipe))
-        this.$router.push('/recipeList')
       })
     },
   },
